@@ -1,0 +1,18 @@
+type UserId = text;
+type ItemId = nat;
+type Item = 
+ record {
+   description: opt text;
+   id: ItemId;
+   imageUrl: text;
+   price: float64;
+   title: text;
+ };
+service : {
+  addItem: (text, opt text, float64, text) -> (ItemId);
+  addToCart: (UserId, ItemId) -> (bool);
+  getCart: (UserId) -> (vec Item) query;
+  getItem: (ItemId) -> (opt Item) query;
+  getItems: () -> (vec Item) query;
+  initializeItems: () -> ();
+}
